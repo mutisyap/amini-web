@@ -11,7 +11,9 @@
 
 # IDE details
 *.idea
-*.idea*
+.idea/*
+
+package-lock.json
 
 # BlueJ files
 *.ctxt

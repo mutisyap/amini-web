@@ -1,28 +1,27 @@
 (function () {
     'use strict';
 
-    angular.module('webApp').config(stateConfig);
+    angular.module('aminiApp').config(stateConfig);
 
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider) {
         $stateProvider
-            .state('organization', {
+            .state('organizations', {
                 parent: 'app',
                 url: '/',
                 data: {
-                    requiresAuthentication: true,
-                    authorities: [],
+                    requiresAuthentication: false,
                     pageTitle: 'Insitutions'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'core/routes/home/organization.html',
-                        controller: 'HomeController',
+                        templateUrl: 'core/routes/organization/organization.html',
+                        controller: 'OrganizationController',
                         controllerAs: 'vm'
                     }
                 },
                 resolve: {}
             });
     }
-});
+})();

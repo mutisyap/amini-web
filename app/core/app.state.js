@@ -1,22 +1,29 @@
-(function () {
+(function() {
     'use strict';
 
-    angular.module('aminiApp').config(stateConfig);
+    angular
+        .module('aminiApp')
+        .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+    stateConfig.$inject = ['$stateProvider'];
 
-    function stateConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/');
+    function stateConfig($stateProvider) {
         $stateProvider.state('app', {
-            abstract: true,
-            views: {
-                'navbar@': {
-                    templateUrl: 'core/layouts/navbar/navbar.html',
-                    controller: 'NavbarController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {}
+            abstract: true
+            // views: {
+            //     'navbar@': {
+            //         templateUrl: 'app/layouts/navbar/navbar.html',
+            //         controller: 'NavbarController',
+            //         controllerAs: 'vm'
+            //     }
+            // },
+            // resolve: {
+            //     authorize: ['Auth',
+            //         function (Auth) {
+            //             return Auth.authorize();
+            //         }
+            //     ]
+            // }
         });
     }
 })();

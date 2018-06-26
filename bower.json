@@ -2,18 +2,18 @@
   "name": "amini",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.4.0",
-    "bootstrap": "^3.2.0",
-    "angular-animate": "^1.4.0",
-    "angular-cookies": "^1.4.0",
-    "angular-resource": "^1.4.0",
-    "angular-sanitize": "^1.4.0",
-    "angular-touch": "^1.4.0",
-    "angular-ui-router": "1.0.7",
-    "ngmap":"1.18.4"
+    "angular": "1.5.8",
+    "bootstrap": "3.3.7",
+    "angular-cookies": "1.5.8",
+    "angular-resource": "1.5.8",
+    "angular-sanitize": "1.5.8",
+    "angular-ui-router": "0.3.1",
+    "ngmap":"1.18.4",
+    "jquery": "3.1.0",
+    "json3": "3.3.2"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.0"
+    "angular-mocks": "1.5.8"
   },
   "appPath": "app",
   "moduleName": "aminiApp",
@@ -25,5 +25,9 @@
         "dist/js/bootstrap.js"
       ]
     }
+  },
+  "resolutions": {
+    "angular": "1.5.8",
+    "jquery": "3.1.0"
   }
 }

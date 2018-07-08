@@ -1,0 +1,102 @@
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myProfessionalLabel">Map a church</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4" ng-show="true">
+                <div class="form-group">
+                    <label class="control-label" for="field_fullName">User Full Name</label>
+                    <p>
+                        <input required type="text" placeholder="Peter Kivulu Mutisya" class="form-control" />
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="col-md-4" ng-show="true">
+                <div class="form-group">
+                    <label class="control-label" for="field_fullName">User Email Address</label>
+                    <p>
+                        <input required type="email" placeholder="john.doe@test.com" class="form-control" />
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="col-md-4" ng-show="true">
+                <div class="form-group">
+                    <label class="control-label" for="field_fullName">User Password</label>
+                    <p>
+                        <input required type="password" class="form-control" />
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <!-- <div ng-hide="true" class="col-md-6">
+                <div class="form-group">
+                  <label for="field_year">Start Day</label>
+                  <select class="form-control" id="field_year" name="year" ng-model="vm.programme.startDay" ng-options="programmeDay as programmeDay for programmeDay in vm.programmeDays">
+                    <option>{{programmeDay}}</option>
+                  </select>
+                </div>
+              </div> -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="field_fullName">City/Town</label>
+                    <p>
+                        <input required type="text" placeholder="Nairobi" class="form-control" />
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="field_fullName">Church Name</label>
+                    <p>
+                        <input required type="text" placeholder="Kalimoni Catholic Church" class="form-control" />
+                    </p>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="control-label" for="field_fullName">Brief Description</label>
+                    <p>
+                        <textarea required type="text" placeholder="ST THERESA Kalimoni Parish was founded in 1980 by the Vincentian priests" class="form-control"
+                            rows="5"></textarea>
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div map-lazy-load="{{vm.googleMapsUrl}}" map-lazy-load-params="{{vm.googleMapsUrl}}">
+                            <ng-map center="{{vm.latitude}},{{vm.longitude}}" zoom="{{vm.zoomLevel}}">
+                                <div ng-repeat="organization in vm.organizations">
+                                    <marker position="{{organization.latitude}}, {{organization.longitude}}" on-click="vm.setCurrentLocation({$event: location.id})"
+                                        title="{{location.name}}">
+                                    </marker>
+                                    <!-- on-tap="vm.setCurrentLocation(p.id)" -->
+
+                                </div>
+                            </ng-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+                <span data-translate="entity.action.cancel">Cancel</span>
+            </button>
+            <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;
+                <span data-translate="entity.action.save">Save</span>
+            </button>
+        </div>
+</form>

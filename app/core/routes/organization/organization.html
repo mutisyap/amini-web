@@ -1,88 +1,147 @@
-<div>
-    <h2>Organizations</h2>
-    <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="organization.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span >
-                        Create new Organization
-                    </span>
-                </button>
+<!--<div>-->
+<!--<h2>Organizations</h2>-->
+<!--<jhi-alert></jhi-alert>-->
+<!--<div class="container-fluid">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-4 no-padding-left">-->
+<!--<button class="btn btn-primary" ui-sref="organization.new" >-->
+<!--<span class="glyphicon glyphicon-plus"></span>-->
+<!--<span >-->
+<!--Create new Organization-->
+<!--</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<br/>-->
+<!--<div class="table-responsive">-->
+<!--<table class="jh-table table table-striped">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th><span>ID</span></th>-->
+<!--<th><span>Type</span></th>-->
+<!--<th><span>Name</span></th>-->
+<!--<th><span>Latitude</span></th>-->
+<!--<th><span>Longitude</span></th>-->
+<!--<th><span>Created By</span></th>-->
+<!--<th><span>Created On</span></th>-->
+<!--<th><span>Last Updated By</span></th>-->
+<!--<th><span>Last Updated On</span></th>-->
+<!--<th><span>Description</span></th>-->
+<!--<th><span>Contact 1</span></th>-->
+<!--<th><span>Contact 1 Value</span></th>-->
+<!--<th><span>Contact 2</span></th>-->
+<!--<th><span>Contact 2 Value</span></th>-->
+<!--<th><span>Contact 3</span></th>-->
+<!--<th><span>Contact 3 Value</span></th>-->
+<!--<th><span>Content Status</span></th>-->
+<!--<th><span>Uuid</span></th>-->
+<!--<th></th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr ng-repeat="organization in vm.organizations track by organization.id">-->
+<!--<td><a ui-sref="organization-detail({id:organization.id})">{{organization.id}}</a></td>-->
+<!--<td>{{organization.type}}</td>-->
+<!--<td>{{organization.name}}</td>-->
+<!--<td>{{organization.latitude}}</td>-->
+<!--<td>{{organization.longitude}}</td>-->
+<!--<td>{{organization.createdBy}}</td>-->
+<!--<td>{{organization.createdOn | date:'medium'}}</td>-->
+<!--<td>{{organization.lastUpdatedBy}}</td>-->
+<!--<td>{{organization.lastUpdatedOn | date:'medium'}}</td>-->
+<!--<td>{{organization.description}}</td>-->
+<!--<td>{{organization.contact1}}</td>-->
+<!--<td>{{organization.contact1Value}}</td>-->
+<!--<td>{{organization.contact2}}</td>-->
+<!--<td>{{organization.contact2Value}}</td>-->
+<!--<td>{{organization.contact3}}</td>-->
+<!--<td>{{organization.contact3Value}}</td>-->
+<!--<td>{{organization.contentStatus}}</td>-->
+<!--<td>{{organization.uuid}}</td>-->
+<!--<td class="text-right">-->
+<!--<div class="btn-group flex-btn-group-container">-->
+<!--<button type="submit"-->
+<!--ui-sref="organization-detail({id:organization.id})"-->
+<!--class="btn btn-info btn-sm">-->
+<!--<span class="glyphicon glyphicon-eye-open"></span>-->
+<!--<span class="hidden-sm-down"></span>-->
+<!--</button>-->
+<!--<button type="submit"-->
+<!--ui-sref="organization.edit({id:organization.id})"-->
+<!--class="btn btn-primary btn-sm">-->
+<!--<span class="glyphicon glyphicon-pencil"></span>-->
+<!--<span class="hidden-sm-down"></span>-->
+<!--</button>-->
+<!--<button type="submit"-->
+<!--ui-sref="organization.delete({id:organization.id})"-->
+<!--class="btn btn-danger btn-sm">-->
+<!--<span class="glyphicon glyphicon-remove-circle"></span>-->
+<!--<span class="hidden-sm-down"></span>-->
+<!--</button>-->
+<!--</div>-->
+<!--</td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">Pictures</a>
+        </li>
+        <li>
+            <a href="#">Summer 15</a>
+        </li>
+        <li>Italy</li>
+
+        <a href="#" ui-sref="organizations.new" class="btn-default">
+            <span class="glyphicon glyphicon-plus-sign"></span> Map a church</a>
+
+
+        <!-- <li class="pull-right" style="padding-top: 0">
+            <select class="form-control" id="sel1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+
+        </li> -->
+    </ul>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div map-lazy-load="{{vm.googleMapsUrl}}" map-lazy-load-params="{{vm.googleMapsUrl}}">
+                        <ng-map center="{{vm.latitude}},{{vm.longitude}}" zoom="{{vm.zoomLevel}}">
+                            <div ng-repeat="organization in vm.organizations">
+                                <marker position="{{organization.latitude}}, {{organization.longitude}}" on-click="vm.setCurrentLocation({$event: location.id})"
+                                    title="{{location.name}}">
+                                </marker>
+                                <!-- on-tap="vm.setCurrentLocation(p.id)" -->
+
+                            </div>
+                        </ng-map>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-            <tr>
-                <th><span>ID</span></th>
-                <th><span>Type</span></th>
-                <th><span>Name</span></th>
-                <th><span>Latitude</span></th>
-                <th><span>Longitude</span></th>
-                <th><span>Created By</span></th>
-                <th><span>Created On</span></th>
-                <th><span>Last Updated By</span></th>
-                <th><span>Last Updated On</span></th>
-                <th><span>Description</span></th>
-                <th><span>Contact 1</span></th>
-                <th><span>Contact 1 Value</span></th>
-                <th><span>Contact 2</span></th>
-                <th><span>Contact 2 Value</span></th>
-                <th><span>Contact 3</span></th>
-                <th><span>Contact 3 Value</span></th>
-                <th><span>Content Status</span></th>
-                <th><span>Uuid</span></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="organization in vm.organizations track by organization.id">
-                <td><a ui-sref="organization-detail({id:organization.id})">{{organization.id}}</a></td>
-                <td>{{organization.type}}</td>
-                <td>{{organization.name}}</td>
-                <td>{{organization.latitude}}</td>
-                <td>{{organization.longitude}}</td>
-                <td>{{organization.createdBy}}</td>
-                <td>{{organization.createdOn | date:'medium'}}</td>
-                <td>{{organization.lastUpdatedBy}}</td>
-                <td>{{organization.lastUpdatedOn | date:'medium'}}</td>
-                <td>{{organization.description}}</td>
-                <td>{{organization.contact1}}</td>
-                <td>{{organization.contact1Value}}</td>
-                <td>{{organization.contact2}}</td>
-                <td>{{organization.contact2Value}}</td>
-                <td>{{organization.contact3}}</td>
-                <td>{{organization.contact3Value}}</td>
-                <td>{{organization.contentStatus}}</td>
-                <td>{{organization.uuid}}</td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                ui-sref="organization-detail({id:organization.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-sm-down"></span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="organization.edit({id:organization.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <span class="hidden-sm-down"></span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="organization.delete({id:organization.id})"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>
-                            <span class="hidden-sm-down"></span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"> Kalimoni Catholic Church</div>
+
+                <div class="panel-body">
+                    <p> Kalimoni Catholic Church Description</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

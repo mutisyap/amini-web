@@ -3,17 +3,16 @@
 
     angular
         .module('aminiApp', [
-            'ngCookies',
             'ngResource',
             'ngSanitize',
             "ui.router",
-            "ngMap"
+            "ngMap",
+            "ui.bootstrap"
         ])
         .run(run);
 
-    run.$inject = ['stateHandler'];
+    run.$inject = [];
 
-    function run(stateHandler) {
-        stateHandler.initialize();
+    function run() {
     }
 })();

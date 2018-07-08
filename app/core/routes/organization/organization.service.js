@@ -6,7 +6,7 @@
 
     OrganizationService.$inject = ['$resource'];
 
-    var resourceUrl = 'http://localhost:8080/api/organizations';
+    var resourceUrl = 'http://51.15.123.128:8080/api/organizations';
 
     function OrganizationService($resource) {
         return $resource(resourceUrl, {}, {

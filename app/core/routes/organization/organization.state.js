@@ -37,31 +37,23 @@
                             .open({
                                 templateUrl:
                                     'core/routes/organization/organization-dialog.html',
-                                controller: 'OrganizationController',
+                                controller: 'OrganizationCreateDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'lg',
                                 resolve: {
                                     entity: function () {
                                         return {
-                                            "contact1": null,
-                                            "contact1Value": null,
-                                            "contact2": null,
-                                            "contact2Value": null,
-                                            "contact3": null,
-                                            "contact3Value": null,
-                                            "contentStatus": null,
-                                            "createdBy": null,
-                                            "createdOn": null,
                                             "description": null,
-                                            "id": null,
-                                            "lastUpdatedBy": null,
-                                            "lastUpdatedOn": null,
+                                            "emailAddress": null,
+                                            "fullName": null,
                                             "latitude": null,
+                                            "locationId": null,
+                                            "locationName": null,
                                             "longitude": null,
-                                            "name": null,
-                                            "type": "CHURCH",
-                                            "uuid": null
+                                            "organizationName": null,
+                                            "password": null,
+                                            "roles": []
                                         };
                                     }
                                 },

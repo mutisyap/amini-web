@@ -75,13 +75,10 @@
                     <div class="panel-body">
                         <div map-lazy-load="{{vm.googleMapsUrl}}" map-lazy-load-params="{{vm.googleMapsUrl}}">
                             <ng-map center="{{vm.latitude}},{{vm.longitude}}" zoom="{{vm.zoomLevel}}">
-                                <div ng-repeat="organization in vm.organizations">
-                                    <marker position="{{organization.latitude}}, {{organization.longitude}}" on-click="vm.setCurrentLocation({$event: location.id})"
-                                        title="{{location.name}}">
-                                    </marker>
-                                    <!-- on-tap="vm.setCurrentLocation(p.id)" -->
+                                <marker position="{{vm.latitude}},{{vm.longitude}}" on-dragend="vm.getpos($event)" animation="" animation="DROP"
+                                    draggable="true"></marker>
+                                <!-- on-tap="vm.setCurrentLocation(p.id)" -->
 
-                                </div>
                             </ng-map>
                         </div>
                     </div>

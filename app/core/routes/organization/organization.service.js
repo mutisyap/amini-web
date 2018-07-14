@@ -17,4 +17,14 @@
             }
         });
     }
+
+    function OrganizationService($resource) {
+        return $resource(resourceUrl, {}, {
+            'register': {
+                method: 'POST',
+                isArray: false,
+                url: resourceUrl+"/register"
+            }
+        });
+    }
 })();

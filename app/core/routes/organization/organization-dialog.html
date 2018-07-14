@@ -9,7 +9,8 @@
                 <div class="form-group">
                     <label class="control-label" for="field_fullName">User Full Name</label>
                     <p>
-                        <input required type="text" placeholder="Peter Kivulu Mutisya" class="form-control" />
+                        <input required type="text" placeholder="Peter Kivulu Mutisya" class="form-control" ng-model="vm.registerOrganization.fullName"
+                        />
                     </p>
                 </div>
 
@@ -17,9 +18,10 @@
 
             <div class="col-md-4" ng-show="true">
                 <div class="form-group">
-                    <label class="control-label" for="field_fullName">User Email Address</label>
+                    <label class="control-label">User Email Address</label>
                     <p>
-                        <input required type="email" placeholder="john.doe@test.com" class="form-control" />
+                        <input required type="email" placeholder="john.doe@test.com" class="form-control" ng-model="vm.registerOrganization.emailAddress"
+                        />
                     </p>
                 </div>
 
@@ -29,64 +31,76 @@
                 <div class="form-group">
                     <label class="control-label" for="field_fullName">User Password</label>
                     <p>
-                        <input required type="password" class="form-control" />
+                        <input required type="password" class="form-control" ng-model="vm.registerOrganization.password" />
                     </p>
                 </div>
 
             </div>
         </div>
-        <!-- <div ng-hide="true" class="col-md-6">
-                <div class="form-group">
-                  <label for="field_year">Start Day</label>
-                  <select class="form-control" id="field_year" name="year" ng-model="vm.programme.startDay" ng-options="programmeDay as programmeDay for programmeDay in vm.programmeDays">
-                    <option>{{programmeDay}}</option>
-                  </select>
-                </div>
-              </div> -->
+
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="field_fullName">City/Town</label>
                     <p>
-                        <input required type="text" placeholder="Nairobi" class="form-control" />
+                        <select class="form-control" ng-options="location.id as location.name for location in vm.locations" ng-model="vm.registerOrganization.locationId"
+                            ng-change="vm.setLocation(vm.registerOrganization.locationId)">
+                            <option value=""></option>
+                        </select>
+                        <!-- <input required type="text" placeholder="Nairobi" class="form-control" /> -->
                     </p>
                 </div>
-
-                <div class="form-group">
-                    <label class="control-label" for="field_fullName">Church Name</label>
+                <div ng-show="vm.registerOrganization.organizationType === 'CHURCH'" class="form-group">
+                    <label class="control-label">Church Name</label>
                     <p>
-                        <input required type="text" placeholder="Kalimoni Catholic Church" class="form-control" />
+                        <input required type="text" placeholder="Kalimoni Catholic Church" class="form-control" ng-model="vm.registerOrganization.organizationName"
+                        />
+                    </p>
+                </div>
+                <div ng-show="vm.registerOrganization.organizationType === 'CHARITY'" class="form-group">
+                    <label class="control-label">Charity Center Name</label>
+                    <p>
+                        <input required type="text" placeholder="Nyumbani Childrens' home" class="form-control" ng-model="vm.registerOrganization.organizationName"
+                        />
                     </p>
                 </div>
 
 
-
-                <div class="form-group">
+                <div ng-show="vm.registerOrganization.organizationType === 'CHURCH'" class="form-group">
                     <label class="control-label" for="field_fullName">Brief Description</label>
                     <p>
                         <textarea required type="text" placeholder="ST THERESA Kalimoni Parish was founded in 1980 by the Vincentian priests" class="form-control"
-                            rows="5"></textarea>
+                            rows="5" ng-model="vm.registerOrganization.description"></textarea>
                     </p>
                 </div>
+
+                <div ng-show="vm.registerOrganization.organizationType === 'CHARITY'" class="form-group">
+                        <label class="control-label" for="field_fullName">Brief Description</label>
+                        <p>
+                            <textarea required type="text" placeholder="Nyumbani Childrens' home is a church project started in 1990 in Kibera slums." class="form-control"
+                                rows="5" ng-model="vm.registerOrganization.description"></textarea>
+                        </p>
+                    </div>
 
             </div>
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div map-lazy-load="{{vm.googleMapsUrl}}" map-lazy-load-params="{{vm.googleMapsUrl}}">
-                            <ng-map center="{{vm.latitude}},{{vm.longitude}}" zoom="{{vm.zoomLevel}}">
-                                <marker position="{{vm.latitude}},{{vm.longitude}}" on-dragend="vm.getpos($event)" animation="" animation="DROP"
-                                    draggable="true"></marker>
-                                <!-- on-tap="vm.setCurrentLocation(p.id)" -->
-
+                            <ng-map center="{{vm.registerOrganization.latitude}},{{vm.registerOrganization.longitude}}" zoom="{{vm.zoomLevel}}">
+                                <marker position="{{vm.registerOrganization.latitude}},{{vm.registerOrganization.longitude}}" on-dragend="vm.getpos($event)"
+                                    animation="" animation="DROP" draggable="true"></marker>
                             </ng-map>
                         </div>
                     </div>
                 </div>
+                <!-- {{vm.registerOrganizationvm.registerOrganization.latitude}}, {{vm.registerOrganization.longitude}} -->
             </div>
         </div>
 
         <div class="modal-footer">
+
+            <!-- {{vm.registerOrganization}} -->
             <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
                 <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
                 <span data-translate="entity.action.cancel">Cancel</span>

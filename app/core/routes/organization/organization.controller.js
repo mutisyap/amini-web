@@ -13,9 +13,9 @@
 
         vm.organizations = [];
 
-        vm.latitude = -1.2921;
-        vm.longitude = 36.8219;
-        vm.zoomLevel = 7;
+        vm.latitude = 0.25686187;
+        vm.longitude = 38.239136;
+        vm.zoomLevel = 6;
 
         vm.googleMapsUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB3K32QdljqJokEOccmjyNdEIylY7nTukY';
 

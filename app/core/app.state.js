@@ -5,9 +5,11 @@
         .module('aminiApp')
         .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
+    stateConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-    function stateConfig($stateProvider) {
+    function stateConfig($stateProvider, $urlRouterProvider) {
+        console.log('urlRouterProvider');
+        console.log($urlRouterProvider);
         $stateProvider.state('app', {
             abstract: true,
             views: {
@@ -19,5 +21,12 @@
             },
             resolve: {}
         });
+
+        $urlRouterProvider.otherwise(function ($injector, $location) {
+            $injector.invoke(['$state', function ($state) {
+                $state.go('organizations');
+            }]);
+        });
+
     }
 })();

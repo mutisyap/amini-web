@@ -9,7 +9,7 @@
         $stateProvider
             .state('organizations', {
                 parent: 'app',
-                url: '',
+                url: '/',
                 data: {
                     requiresAuthentication: false,
                     pageTitle: 'Insitutions'
@@ -25,14 +25,14 @@
             })
             .state('organizations.new', {
                 parent: 'organizations',
-                url: '/new',
+                url: '/{type}/new',
                 data: { pageTitle: 'create church' },
                 onEnter: [
                     '$uibModal',
                     '$stateParams',
                     function ($uibModal, $stateParams) {
                         console.log('$stateParams');
-                        console.log($stateParams);
+                        console.log($stateParams.type);
                         $uibModal
                             .open({
                                 templateUrl:
@@ -53,7 +53,8 @@
                                             "longitude": null,
                                             "organizationName": null,
                                             "password": null,
-                                            "roles": []
+                                            "roles": [],
+                                            "organizationType":$stateParams.type
                                         };
                                     }
                                 },

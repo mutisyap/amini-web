@@ -14,7 +14,7 @@
             abstract: true,
             views: {
                 'navbar@': {
-                    templateUrl: 'layouts/navbar/navbar.html',
+                    templateUrl: 'core/layouts/navbar/navbar.html',
                     // controller: 'NavbarController',
                     // controllerAs: 'vm'
                 }

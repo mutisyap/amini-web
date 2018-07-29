@@ -1,4 +1,4 @@
-// Generated on 2018-06-24 using generator-angular 0.16.0
+// Generated on 2017-06-28 using generator-angular 0.16.0
 'use strict';
 
 // # Globbing
@@ -38,10 +38,15 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all', 'newer:jscs:all'],
+        files: ['<%= yeoman.app %>/core/**/*.js'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
+        }
+      },
+      html: {
+        files: ['<%= yeoman.app %>/core/**/*.html'],
+        options: {
+          livereload: true
         }
       },
       jsTest: {
@@ -57,7 +62,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
@@ -88,6 +93,10 @@ module.exports = function (grunt) {
               connect().use(
                 '/app/styles',
                 connect.static('./app/styles')
+              ),
+              connect().use(
+                '/app/core',
+                connect.static('./app/core')
               ),
               connect.static(appConfig.app)
             ];
@@ -127,7 +136,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/core/{,*/}*.js'
         ]
       },
       test: {
@@ -147,7 +156,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/core/{,*/}*.js'
         ]
       },
       test: {
@@ -220,7 +229,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -343,7 +352,12 @@ module.exports = function (grunt) {
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
-        src: 'views/{,*/}*.html',
+        // src: 'app/core/{,*/}*.html',
+        src: [
+          "core/layouts/{,*/**/}*.html",
+          'core/routes/{,*/**/}*.html'
+          ],
+        // src: ['**/*.html'],
         dest: '.tmp/templateCache.js'
       }
     },
@@ -377,11 +391,21 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
+            '*.{ico,png,txt,yml,json,webm,mp4}',
             '*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
           ]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/data',
+          dest: '<%= yeoman.dist %>/data',
+          src: ['**/*']
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/media',
+          dest: '<%= yeoman.dist %>/media',
+          src: ['**/*']
         }, {
           expand: true,
           cwd: '.tmp/images',
